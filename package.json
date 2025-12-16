@@ -1,0 +1,39 @@
+{
+    "name": "ops-guardian",
+    "version": "1.0.0",
+    "description": "Autonomous SRE Agent using Motia Unified Runtime",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/index.js",
+        "dev": "ts-node src/index.ts"
+    },
+    "keywords": [
+        "motia",
+        "hackathon",
+        "sre",
+        "ai",
+        "automation"
+    ],
+    "author": "OpsGuardian Team",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^1.6.0",
+        "dotenv": "^16.3.0",
+        "openai": "^4.20.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.0.0",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ChandanLabs/OpsGuardian.git"
+    },
+    "type": "commonjs",
+    "bugs": {
+        "url": "https://github.com/ChandanLabs/OpsGuardian/issues"
+    },
+    "homepage": "https://github.com/ChandanLabs/OpsGuardian#readme"
+}
