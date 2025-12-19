@@ -1,39 +1,56 @@
 {
-    "name": "ops-guardian",
-    "version": "1.0.0",
-    "description": "Autonomous SRE Agent using Motia Unified Runtime",
-    "main": "dist/index.js",
-    "scripts": {
-        "build": "tsc",
-        "start": "node dist/index.js",
-        "dev": "ts-node src/index.ts"
-    },
-    "keywords": [
-        "motia",
-        "hackathon",
-        "sre",
-        "ai",
-        "automation"
-    ],
-    "author": "OpsGuardian Team",
-    "license": "MIT",
-    "dependencies": {
-        "axios": "^1.6.0",
-        "dotenv": "^16.3.0",
-        "openai": "^4.20.0"
-    },
-    "devDependencies": {
-        "@types/node": "^20.0.0",
-        "ts-node": "^10.9.1",
-        "typescript": "^5.0.0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/ChandanLabs/OpsGuardian.git"
-    },
-    "type": "commonjs",
-    "bugs": {
-        "url": "https://github.com/ChandanLabs/OpsGuardian/issues"
-    },
-    "homepage": "https://github.com/ChandanLabs/OpsGuardian#readme"
+  "name": "ops-guardian",
+  "version": "1.0.0",
+  "description": "Autonomous SRE Agent using Motia Unified Runtime",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "motia build",
+    "start": "motia start",
+    "dev": "motia dev",
+    "test": "jest"
+  },
+  "keywords": [
+    "motia",
+    "hackathon",
+    "sre",
+    "ai",
+    "automation"
+  ],
+  "author": "OpsGuardian Team",
+  "license": "MIT",
+  "dependencies": {
+    "@motiadev/core": "0.17.9-beta.191",
+    "@motiadev/plugin-bullmq": "^0.17.9-beta.191",
+    "@motiadev/plugin-endpoint": "^0.17.9-beta.191",
+    "@motiadev/plugin-logs": "^0.17.9-beta.191",
+    "@motiadev/plugin-observability": "^0.17.9-beta.191",
+    "@motiadev/plugin-states": "^0.17.9-beta.191",
+    "@types/uuid": "^10.0.0",
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.0",
+    "motia": "^0.17.9-beta.191",
+    "openai": "^4.20.0",
+    "uuid": "^13.0.0",
+    "zod": "^4.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^20.19.27",
+    "@types/supertest": "^6.0.3",
+    "jest": "^30.2.0",
+    "supertest": "^7.1.4",
+    "ts-jest": "^29.4.6",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChandanLabs/OpsGuardian.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ChandanLabs/OpsGuardian/issues"
+  },
+  "homepage": "https://github.com/ChandanLabs/OpsGuardian#readme"
 }

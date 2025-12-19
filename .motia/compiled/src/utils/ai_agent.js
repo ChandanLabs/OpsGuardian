@@ -1,0 +1,33 @@
+import dotenv from "dotenv";
+dotenv.config();
+class AiOpsAgent {
+  /**
+   * Analyzes text logs and determines root cause and fix.
+   */
+  static async analyzeIncident(logs) {
+    console.log("\u{1F916} AI Agent: Analyzing logs...");
+    if (logs.includes("Redis")) {
+      return {
+        rootCause: "Redis Connection Pool Exhaustion",
+        recommendedAction: "restart redis-server --immediate",
+        confidence: 0.98
+      };
+    }
+    if (logs.includes("Memory")) {
+      return {
+        rootCause: "OOM Kill (Out of Memory)",
+        recommendedAction: "scale-up instance",
+        confidence: 0.85
+      };
+    }
+    return {
+      rootCause: "Unknown System Glitch",
+      recommendedAction: "reboot system",
+      confidence: 0.5
+    };
+  }
+}
+export {
+  AiOpsAgent
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsiLi4vLi4vLi4vLi4vc3JjL3V0aWxzL2FpX2FnZW50LnRzIl0sCiAgInNvdXJjZXNDb250ZW50IjogWyJcclxuaW1wb3J0IGRvdGVudiBmcm9tICdkb3RlbnYnO1xyXG4vLyBpbXBvcnQgT3BlbkFJIGZyb20gJ29wZW5haSc7IC8vIFVuY29tbWVudCBpbiBwcm9kdWN0aW9uXHJcblxyXG5kb3RlbnYuY29uZmlnKCk7XHJcblxyXG4vLyBjb25zdCBvcGVuYWkgPSBuZXcgT3BlbkFJKHsgYXBpS2V5OiBwcm9jZXNzLmVudi5PUEVOQUlfQVBJX0tFWSB9KTtcclxuXHJcbmV4cG9ydCBjbGFzcyBBaU9wc0FnZW50IHtcclxuXHJcbiAgICAvKipcclxuICAgICAqIEFuYWx5emVzIHRleHQgbG9ncyBhbmQgZGV0ZXJtaW5lcyByb290IGNhdXNlIGFuZCBmaXguXHJcbiAgICAgKi9cclxuICAgIHN0YXRpYyBhc3luYyBhbmFseXplSW5jaWRlbnQobG9nczogc3RyaW5nKTogUHJvbWlzZTx7IHJvb3RDYXVzZTogc3RyaW5nOyByZWNvbW1lbmRlZEFjdGlvbjogc3RyaW5nOyBjb25maWRlbmNlOiBudW1iZXIgfT4ge1xyXG4gICAgICAgIGNvbnNvbGUubG9nKFwiXHVEODNFXHVERDE2IEFJIEFnZW50OiBBbmFseXppbmcgbG9ncy4uLlwiKTtcclxuXHJcbiAgICAgICAgLy8gSW4gYSByZWFsIGhhY2thdGhvbiBzdWJtaXNzaW9uLCB0aGlzIHdvdWxkIGNhbGwgT3BlbkFJL0dlbWluaVxyXG4gICAgICAgIC8vIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgb3BlbmFpLmNoYXQuY29tcGxldGlvbnMuY3JlYXRlKHsgLi4uIH0pO1xyXG5cclxuICAgICAgICAvLyBNT0NLIFJFU1BPTlNFIExvZ2ljIGJhc2VkIG9uIGxvZyBjb250ZW50XHJcbiAgICAgICAgaWYgKGxvZ3MuaW5jbHVkZXMoXCJSZWRpc1wiKSkge1xyXG4gICAgICAgICAgICByZXR1cm4ge1xyXG4gICAgICAgICAgICAgICAgcm9vdENhdXNlOiBcIlJlZGlzIENvbm5lY3Rpb24gUG9vbCBFeGhhdXN0aW9uXCIsXHJcbiAgICAgICAgICAgICAgICByZWNvbW1lbmRlZEFjdGlvbjogXCJyZXN0YXJ0IHJlZGlzLXNlcnZlciAtLWltbWVkaWF0ZVwiLFxyXG4gICAgICAgICAgICAgICAgY29uZmlkZW5jZTogMC45OFxyXG4gICAgICAgICAgICB9O1xyXG4gICAgICAgIH1cclxuXHJcbiAgICAgICAgaWYgKGxvZ3MuaW5jbHVkZXMoXCJNZW1vcnlcIikpIHtcclxuICAgICAgICAgICAgcmV0dXJuIHtcclxuICAgICAgICAgICAgICAgIHJvb3RDYXVzZTogXCJPT00gS2lsbCAoT3V0IG9mIE1lbW9yeSlcIixcclxuICAgICAgICAgICAgICAgIHJlY29tbWVuZGVkQWN0aW9uOiBcInNjYWxlLXVwIGluc3RhbmNlXCIsXHJcbiAgICAgICAgICAgICAgICBjb25maWRlbmNlOiAwLjg1XHJcbiAgICAgICAgICAgIH07XHJcbiAgICAgICAgfVxyXG5cclxuICAgICAgICByZXR1cm4ge1xyXG4gICAgICAgICAgICByb290Q2F1c2U6IFwiVW5rbm93biBTeXN0ZW0gR2xpdGNoXCIsXHJcbiAgICAgICAgICAgIHJlY29tbWVuZGVkQWN0aW9uOiBcInJlYm9vdCBzeXN0ZW1cIixcclxuICAgICAgICAgICAgY29uZmlkZW5jZTogMC41MFxyXG4gICAgICAgIH07XHJcbiAgICB9XHJcbn1cclxuIl0sCiAgIm1hcHBpbmdzIjogIkFBQ0EsT0FBTyxZQUFZO0FBR25CLE9BQU8sT0FBTztBQUlQLE1BQU0sV0FBVztBQUFBO0FBQUE7QUFBQTtBQUFBLEVBS3BCLGFBQWEsZ0JBQWdCLE1BQTZGO0FBQ3RILFlBQVEsSUFBSSx1Q0FBZ0M7QUFNNUMsUUFBSSxLQUFLLFNBQVMsT0FBTyxHQUFHO0FBQ3hCLGFBQU87QUFBQSxRQUNILFdBQVc7QUFBQSxRQUNYLG1CQUFtQjtBQUFBLFFBQ25CLFlBQVk7QUFBQSxNQUNoQjtBQUFBLElBQ0o7QUFFQSxRQUFJLEtBQUssU0FBUyxRQUFRLEdBQUc7QUFDekIsYUFBTztBQUFBLFFBQ0gsV0FBVztBQUFBLFFBQ1gsbUJBQW1CO0FBQUEsUUFDbkIsWUFBWTtBQUFBLE1BQ2hCO0FBQUEsSUFDSjtBQUVBLFdBQU87QUFBQSxNQUNILFdBQVc7QUFBQSxNQUNYLG1CQUFtQjtBQUFBLE1BQ25CLFlBQVk7QUFBQSxJQUNoQjtBQUFBLEVBQ0o7QUFDSjsiLAogICJuYW1lcyI6IFtdCn0K

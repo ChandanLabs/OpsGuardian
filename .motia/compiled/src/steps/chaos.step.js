@@ -1,0 +1,30 @@
+import { z } from "zod";
+import { InfrastructureManager } from "../services/mock_infrastructure.js";
+const config = {
+  name: "ChaosMonkey",
+  type: "api",
+  path: "/chaos",
+  method: "POST",
+  description: "Injects failure into the system for testing",
+  emits: [],
+  responseSchema: {
+    200: z.object({
+      message: z.string()
+    })
+  }
+};
+const handler = async (req, { emit, logger }) => {
+  logger.warn("\u{1F525} Triggering Chaos Monkey...");
+  await InfrastructureManager.simulateChaos();
+  return {
+    status: 200,
+    body: {
+      message: "\u{1F525}\u{1F525}\u{1F525} CHAOS INJECTED! System is now critical."
+    }
+  };
+};
+export {
+  config,
+  handler
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsiLi4vLi4vLi4vLi4vc3JjL3N0ZXBzL2NoYW9zLnN0ZXAudHMiXSwKICAic291cmNlc0NvbnRlbnQiOiBbIlxyXG5pbXBvcnQgdHlwZSB7IEFwaVJvdXRlQ29uZmlnLCBIYW5kbGVycyB9IGZyb20gJ21vdGlhJztcclxuaW1wb3J0IHsgeiB9IGZyb20gJ3pvZCc7XHJcbmltcG9ydCB7IEluZnJhc3RydWN0dXJlTWFuYWdlciB9IGZyb20gJy4uL3NlcnZpY2VzL21vY2tfaW5mcmFzdHJ1Y3R1cmUnO1xyXG5cclxuZXhwb3J0IGNvbnN0IGNvbmZpZzogQXBpUm91dGVDb25maWcgPSB7XHJcbiAgICBuYW1lOiAnQ2hhb3NNb25rZXknLFxyXG4gICAgdHlwZTogJ2FwaScsXHJcbiAgICBwYXRoOiAnL2NoYW9zJyxcclxuICAgIG1ldGhvZDogJ1BPU1QnLFxyXG4gICAgZGVzY3JpcHRpb246ICdJbmplY3RzIGZhaWx1cmUgaW50byB0aGUgc3lzdGVtIGZvciB0ZXN0aW5nJyxcclxuICAgIGVtaXRzOiBbXSxcclxuICAgIHJlc3BvbnNlU2NoZW1hOiB7XHJcbiAgICAgICAgMjAwOiB6Lm9iamVjdCh7XHJcbiAgICAgICAgICAgIG1lc3NhZ2U6IHouc3RyaW5nKClcclxuICAgICAgICB9KVxyXG4gICAgfVxyXG59O1xyXG5cclxuZXhwb3J0IGNvbnN0IGhhbmRsZXI6IGFueSA9IGFzeW5jIChyZXE6IGFueSwgeyBlbWl0LCBsb2dnZXIgfTogYW55KSA9PiB7XHJcbiAgICBsb2dnZXIud2FybihcIlx1RDgzRFx1REQyNSBUcmlnZ2VyaW5nIENoYW9zIE1vbmtleS4uLlwiKTtcclxuICAgIGF3YWl0IEluZnJhc3RydWN0dXJlTWFuYWdlci5zaW11bGF0ZUNoYW9zKCk7XHJcblxyXG4gICAgcmV0dXJuIHtcclxuICAgICAgICBzdGF0dXM6IDIwMCxcclxuICAgICAgICBib2R5OiB7XHJcbiAgICAgICAgICAgIG1lc3NhZ2U6IFwiXHVEODNEXHVERDI1XHVEODNEXHVERDI1XHVEODNEXHVERDI1IENIQU9TIElOSkVDVEVEISBTeXN0ZW0gaXMgbm93IGNyaXRpY2FsLlwiXHJcbiAgICAgICAgfVxyXG4gICAgfTtcclxufTtcclxuIl0sCiAgIm1hcHBpbmdzIjogIkFBRUEsU0FBUyxTQUFTO0FBQ2xCLFNBQVMsNkJBQTZCO0FBRS9CLE1BQU0sU0FBeUI7QUFBQSxFQUNsQyxNQUFNO0FBQUEsRUFDTixNQUFNO0FBQUEsRUFDTixNQUFNO0FBQUEsRUFDTixRQUFRO0FBQUEsRUFDUixhQUFhO0FBQUEsRUFDYixPQUFPLENBQUM7QUFBQSxFQUNSLGdCQUFnQjtBQUFBLElBQ1osS0FBSyxFQUFFLE9BQU87QUFBQSxNQUNWLFNBQVMsRUFBRSxPQUFPO0FBQUEsSUFDdEIsQ0FBQztBQUFBLEVBQ0w7QUFDSjtBQUVPLE1BQU0sVUFBZSxPQUFPLEtBQVUsRUFBRSxNQUFNLE9BQU8sTUFBVztBQUNuRSxTQUFPLEtBQUssc0NBQStCO0FBQzNDLFFBQU0sc0JBQXNCLGNBQWM7QUFFMUMsU0FBTztBQUFBLElBQ0gsUUFBUTtBQUFBLElBQ1IsTUFBTTtBQUFBLE1BQ0YsU0FBUztBQUFBLElBQ2I7QUFBQSxFQUNKO0FBQ0o7IiwKICAibmFtZXMiOiBbXQp9Cg==

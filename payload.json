@@ -1,0 +1,4 @@
+{
+    "alertId": "REDIS-FAIL-001",
+    "severity": "CRITICAL"
+}
