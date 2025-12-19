@@ -19,7 +19,15 @@ export const config: ApiRouteConfig = {
 };
 
 export const handler: any = async (req: any, { emit, logger }: any) => {
-    const { alertId, severity } = req.body;
+    let body = req.body;
+    if (typeof body === 'string') {
+        try {
+            body = JSON.parse(body);
+        } catch (e) {
+            logger.error("Failed to parse body", body);
+        }
+    }
+    const { alertId, severity } = body || {};
 
     logger.info(`🚨 Alert Received: ${alertId} (${severity})`);
 

@@ -23,10 +23,13 @@ describe('OpsGuardian End-to-End Flow', () => {
         expect(webhookRes.body.alertId).toBeDefined();
 
         // Wait for AI analysis (simulation)
-        await new Promise(r => setTimeout(r, 2000));
+        await new Promise(r => setTimeout(r, 4000));
 
         // 3. Approve Fix
         const approvalRes = await request(BASE_URL).post('/approval/approve').send({ alertId: "TEST-ERR-001" });
+        if (approvalRes.status !== 200) {
+            console.error("Approval Failed:", approvalRes.body);
+        }
         expect(approvalRes.status).toBe(200);
         expect(approvalRes.body.message).toContain('Remediation approved');
     }, 20000); // Long timeout for workflow
