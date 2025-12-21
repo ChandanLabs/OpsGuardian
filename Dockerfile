@@ -7,6 +7,9 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
+# Install compilation tools needed for redis-memory-server
+RUN apk add --no-cache python3 make g++
+
 # Install dependencies (including production keys if needed, but here we just need dependencies)
 # We use --legacy-peer-deps because of the Motia beta/peer dependency mismatches seen earlier
 RUN npm install --legacy-peer-deps
