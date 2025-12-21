@@ -6,7 +6,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
     make \
     g++ \
+    redis-server \
+    procps \
     && rm -rf /var/lib/apt/lists/*
+
+# Enable detailed logs to debug startup issues
+ENV REDIS_MEMORY_SERVER_DEBUG=1
 
 WORKDIR /app
 
