@@ -33,5 +33,8 @@ RUN npm run build
 # Expose port
 EXPOSE 3000
 
-# Start
-CMD ["npm", "run", "start"]
+# Set development environment (sometimes helps with embedded services)
+ENV NODE_ENV=development
+
+# Use dev mode as it is more resilient for hackathon demos
+CMD ["npm", "run", "dev"]
