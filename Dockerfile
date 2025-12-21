@@ -20,6 +20,9 @@ RUN npm install --legacy-peer-deps
 # Copy source code
 COPY . .
 
+# Fix permissions for binaries (common issue in some docker environments)
+RUN chmod -R +x node_modules/.bin
+
 # Build the application
 RUN npm run build
 
