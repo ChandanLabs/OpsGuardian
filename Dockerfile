@@ -10,6 +10,9 @@ COPY package*.json ./
 # Install compilation tools needed for redis-memory-server
 RUN apk add --no-cache python3 make g++
 
+# Skip Redis binary compilation, use system binary if needed or rely on prebuilt
+ENV REDIS_MEMORY_SERVER_DISABLE_POSTINSTALL=1
+
 # Install dependencies (including production keys if needed, but here we just need dependencies)
 # We use --legacy-peer-deps because of the Motia beta/peer dependency mismatches seen earlier
 RUN npm install --legacy-peer-deps
