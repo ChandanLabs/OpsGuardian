@@ -1,0 +1,8 @@
+{
+  "healthy": false,
+  "activeIncidents": [
+    "REDIS_CONNECTION_TIMEOUT",
+    "REDIS_CONNECTION_TIMEOUT"
+  ],
+  "cpuUsage": 98
+}

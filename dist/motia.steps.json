@@ -1,0 +1,153 @@
+{
+  "steps": {
+    "node\\src\\steps\\remediation.step.zip": {
+      "type": "node",
+      "entrypointPath": "\\src\\steps\\remediation.step.js",
+      "config": {
+        "name": "ExecuteRemediation",
+        "type": "event",
+        "subscribes": [
+          "incident.approved"
+        ],
+        "description": "Executes the approved fix and verifies health",
+        "emits": [
+          "incident.resolved"
+        ]
+      },
+      "filePath": "C:\\Users\\chandan2005\\Desktop\\chandan\\Chandan-Projects\\OpsGuardian\\src\\steps\\remediation.step.ts"
+    },
+    "node\\src\\steps\\chaos.step.zip": {
+      "type": "node",
+      "entrypointPath": "\\src\\steps\\chaos.step.js",
+      "config": {
+        "name": "ChaosMonkey",
+        "type": "api",
+        "path": "/chaos",
+        "method": "POST",
+        "description": "Injects failure into the system for testing",
+        "emits": [],
+        "responseSchema": {
+          "200": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "message"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "filePath": "C:\\Users\\chandan2005\\Desktop\\chandan\\Chandan-Projects\\OpsGuardian\\src\\steps\\chaos.step.ts"
+    },
+    "node\\src\\steps\\approval.step.zip": {
+      "type": "node",
+      "entrypointPath": "\\src\\steps\\approval.step.js",
+      "config": {
+        "name": "ApproveFix",
+        "type": "api",
+        "path": "/approval/approve",
+        "method": "POST",
+        "description": "Admin approves the proposed fix",
+        "emits": [
+          "incident.approved"
+        ],
+        "responseSchema": {
+          "200": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "message",
+              "status"
+            ],
+            "additionalProperties": false
+          },
+          "404": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "error": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "error"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "filePath": "C:\\Users\\chandan2005\\Desktop\\chandan\\Chandan-Projects\\OpsGuardian\\src\\steps\\approval.step.ts"
+    },
+    "node\\src\\steps\\analyze.step.zip": {
+      "type": "node",
+      "entrypointPath": "\\src\\steps\\analyze.step.js",
+      "config": {
+        "name": "AnalyzeIncident",
+        "type": "event",
+        "subscribes": [
+          "incident.detected"
+        ],
+        "emits": [
+          "incident.analyzed"
+        ],
+        "description": "Analyzes the incident logs and determines a fix"
+      },
+      "filePath": "C:\\Users\\chandan2005\\Desktop\\chandan\\Chandan-Projects\\OpsGuardian\\src\\steps\\analyze.step.ts"
+    },
+    "node\\src\\steps\\alert.step.zip": {
+      "type": "node",
+      "entrypointPath": "\\src\\steps\\alert.step.js",
+      "config": {
+        "name": "AlertWebhook",
+        "type": "api",
+        "path": "/webhook/alert",
+        "method": "POST",
+        "description": "Receives alerts and triggers incident response workflow",
+        "emits": [
+          "incident.detected"
+        ],
+        "responseSchema": {
+          "200": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "message": {
+                "type": "string"
+              },
+              "alertId": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "message",
+              "alertId",
+              "status"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "filePath": "C:\\Users\\chandan2005\\Desktop\\chandan\\Chandan-Projects\\OpsGuardian\\src\\steps\\alert.step.ts"
+    }
+  },
+  "streams": {},
+  "routers": {
+    "node": "router-node.zip"
+  }
+}
