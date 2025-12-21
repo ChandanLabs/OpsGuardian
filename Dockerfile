@@ -1,35 +1,32 @@
-# Use Node.js 22 LTS
-FROM node:22-alpine
+# Use Node.js 22 Slim (Debian-based) to ensure better binary compatibility
+FROM node:22-slim
 
-# Create app directory
+# Install system dependencies required for potential native modules
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 \
+    make \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
 
-# Install compilation tools needed for redis-memory-server
-RUN apk add --no-cache python3 make g++
-
-# Skip Redis binary compilation, use system binary if needed or rely on prebuilt
-ENV REDIS_MEMORY_SERVER_DISABLE_POSTINSTALL=1
-# Enable detailed logs to debug why the server isn't starting
-ENV REDIS_MEMORY_SERVER_DEBUG=1
-
-# Install dependencies (including production keys if needed, but here we just need dependencies)
-# We use --legacy-peer-deps because of the Motia beta/peer dependency mismatches seen earlier
+# Install dependencies
 RUN npm install --legacy-peer-deps
 
 # Copy source code
 COPY . .
 
-# Fix permissions for binaries (common issue in some docker environments)
+# Fix permissions
 RUN chmod -R +x node_modules/.bin
 
-# Build the application
+# Build
 RUN npm run build
 
-# Expose the port Motia runs on (default 3000)
+# Expose port
 EXPOSE 3000
 
-# Start the application
+# Start
 CMD ["npm", "run", "start"]
